@@ -1,6 +1,7 @@
 import React from 'react';
 import './CommentSection.css';
 import pt from 'prop-types';
+import uuid from 'uuid';
 
 function CommentSection(props) {
     return(
@@ -9,7 +10,7 @@ function CommentSection(props) {
           props.comments.map(comment => {
             return(
                 <p className="comment" 
-                    key={comment.id}>
+                    key={uuid()}>
                       <span className="username"
                       >{comment.username} </span>
                     {comment.text}</p>
@@ -22,7 +23,6 @@ function CommentSection(props) {
 
 CommentSection.propTypes = {
     comments: pt.arrayOf(pt.shape({
-        id: pt.string.isRequired,
         username: pt.string.isRequired,
         text: pt.string.isRequired
     }).isRequired)

@@ -3,6 +3,7 @@ import './App.css';
 import dummyData from './dummy-data';
 import SearchBar from './components/SearchBar/SearchBar';
 import PostContainer from './components/PostContainer/PostContainer';
+import uuid from 'uuid';
 
 
 class App extends Component {
@@ -28,7 +29,7 @@ class App extends Component {
         {
           this.state.instaData.map(dataObj => {
             return <PostContainer 
-                      key={dataObj.id} 
+                      key={uuid()} 
                       data={dataObj}
                       value={this.state.newComment}
                       changes={this.inputChangeHandler}/>

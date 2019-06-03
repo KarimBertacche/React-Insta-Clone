@@ -1,41 +1,89 @@
 /*Post Container*/
 .post-wrapper {
     width: 600px;
-    height: 815px;
+    height: 880px;
     margin: 0 auto;
     border: 3px solid #000;
+    border-radius: 5px;
     margin-bottom: 30px;
 }
   
 .header-wrapper {
     display: flex;
+    justify-content: flex-start;
     width: 100%;
-    height: 70px;
+    height: 60px;
     background-color: #fafafa;
     border-bottom: 3px solid #000;
 }
   
 .thumbImg-wrapper {
-    width: 25px;
-    height: 25px;
+    width: 30px;
+    height: 30px;
     border: 3px solid #000;
     border-radius: 50%;
+    object-fit: cover;
+    overflow: hidden;
+    margin-right: 10px;
+    margin-left: 15px;
+}
+
+.thumbImg-wrapper > img {
+    width: 100%;
+}
+
+.post-user {
+    display: flex;
+    align-items: center;
+    
 }
   
 .post-image {
     width: 100%;
-    height: 500px;
+    height: 550px;
     border-bottom: 3px solid #000;
+    object-fit: cover;
+    margin: 0;
+}
+
+.post-image > img {
+    width: 100%;
+    height: 100%;
 }
   
 .comment-wrapper {
-    padding: 10px;
+    padding: 10px 20px 0;
+}
+
+.comment-icons {
+    display: flex; 
+}
+
+.comment-logo {
+    text-align: left;
+    font-size: 2.7rem;
+    margin-right: 20px;
+}
+
+.comment-logo:last-child {
+    transform: rotateY(180deg);
 }
   
 .tot-likes {
     text-align: left;
     font-size: 1.5rem;
     font-weight: bold;
+}
+
+.post-date {
+    width: 93%;
+    height: 20px;
+    margin: 0 auto;
+    border-bottom: 3px solid #000;
+    padding-bottom: 5px;
+    font-size: 1.4rem;
+    text-align: left;
+    color: rgb(150, 150, 150);
 }
   
 .newComment-section {
@@ -49,7 +97,7 @@
     display: flex;
     width: 80%;
     height: 100%;
-    padding-left: 10px;
+    padding-left: 20px;
     border: none;
     outline: 0;
     font-size: 1.8rem;
