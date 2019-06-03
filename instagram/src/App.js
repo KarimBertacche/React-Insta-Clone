@@ -21,7 +21,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        hello world
+        <SearchBar />
         {
           this.state.instaData.map(dataObj => {
             return <PostContainer 
@@ -31,26 +31,52 @@ class App extends Component {
                       changes={this.inputChangeHandler}/>
           })        
         }
-        {/* <SearchBar />
-        
-        <CommentSection /> */}
       </div>
     );
   } 
 }
 
-//<i className="fab fa-instagram"></i>
+//
 
-// function SearchBar(props) {
-//   return();
-// }
+function SearchBar(props) {
+  return(
+    <header>
+      <div className="logo-wrapper">    
+        {/* <i className="fab fa-instagram"></i> */}
+        <h3>Instagram</h3>
+      </div>
+      <div className="search-wrapper">
+        <input 
+          className="search-bar"
+          type="text"
+          value={props.searchValue}
+          placeholder="Search"/>
+      </div> 
+      <div className="nav-icons">
+
+      </div>
+    </header>
+
+  );
+}
 
 function PostContainer(props) {
   return(
-    <div>
-      {/* {
-        props.data.map()
-      } */}
+    <div className="post-wrapper">
+      <div className="header-wrapper">
+        <figure className="thumbImg-wrapper">
+          <img className="thumbnail-img" src={props.data.thumbnailUrl} alt="thumbnail image"/>
+        </figure>
+        <h2 className="post-user">{props.data.username}</h2>
+      </div>
+      <div className="post-image">
+        <figure>
+          <img src={props.imageUrl} alt="post image" />
+        </figure>
+
+      </div>
+
+      
       <CommentSection 
         comments={props.data.comments} 
         value={props.value}

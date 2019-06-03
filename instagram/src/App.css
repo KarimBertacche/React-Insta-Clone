@@ -33,3 +33,81 @@
     transform: rotate(360deg);
   }
 }
+
+
+/*Search Bar*/
+header {
+  width: 100%;
+  height: 80px;
+  display: flex;
+  justify-content: space-between; 
+  border-bottom: 2px solid grey;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.logo-wrapper {
+  width: 32%;
+  display: flex;
+  /* flex-direction: column; */
+  justify-content: flex-start;
+  align-content: center;
+}
+
+.logo-wrapper > h3 {
+  border-left: 2px solid #000;
+  font-size: 2rem;
+}
+
+.search-wrapper {
+  width: 32%;
+}
+
+.search-bar { 
+  height: 25px;
+  width: 200px;
+  background-color: #fafafa; 
+  border-radius: 5px;
+  text-align: center;
+  font-size: 1.5rem;
+}
+
+.nav-icons {
+  width: 32%;
+  display: flex;
+}
+
+/*Post Container*/
+.post-wrapper {
+  width: 500px;
+  height: 800px;
+  margin: 0 auto;
+  border: 3px solid #000;
+}
+
+.header-wrapper {
+  display: flex;
+  width: 100%;
+  height: 50px;
+  background-color: #fafafa;
+  border-bottom: 3px solid #000;
+}
+
+.thumbImg-wrapper {
+  width: 25px;
+  height: 25px;
+  border: 3px solid #000;
+  border-radius: 50%;
+}
+
+.post-image {
+  width: 100%;
+  height: 500px;
+  border-bottom: 3px solid #000;
+}
+
+
+
+/*Commment Section*/
+
+
