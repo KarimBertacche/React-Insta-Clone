@@ -52,7 +52,7 @@ PostContainer.propTypes = {
             username: pt.string.isRequired,
             text: pt.string.isRequired,
         }).isRequired).isRequired
-    }).isRequired).isRequired
+    }).isRequired)
 }
 
 export default PostContainer;
