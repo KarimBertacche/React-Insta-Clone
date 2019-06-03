@@ -71,39 +71,46 @@ function PostContainer(props) {
       </div>
       <div className="post-image">
         <figure>
-          <img src={props.imageUrl} alt="post image" />
+          <img src={props.data.imageUrl} alt="post image" />
         </figure>
-
       </div>
+      <div className="comment-wrapper">
+        <div className="comment-icons">
 
-      
-      <CommentSection 
-        comments={props.data.comments} 
+        </div>
+        <p className="tot-likes">{props.data.likes} likes</p>
+        <CommentSection 
+          comments={props.data.comments} 
+          value={props.value}
+          changes={props.changes}/>     
+      </div>
+      <div className="newComment-section">
+        <input 
+        type="text" 
         value={props.value}
-        changes={props.changes}/>
+        onChange={props.changes} 
+        placeholder="Add a comment ..."/> 
+        <span></span>
+      </div> 
+      
     </div>
   );
 }
 
 function CommentSection(props) {
   return(
-    <div>
+    <div className="comment-section">
       {
         props.comments.map(comment => {
           return(
-              <p className="comment-section" 
+              <p className="comment" 
                   key={comment.id}>
                     <span className="username"
-                    >{comment.username}</span>
+                    >{comment.username} </span>
                   {comment.text}</p>
           )
         })
-      }
-      <input 
-        type="text" 
-        value={props.value}
-        onChange={props.changes} 
-        placeholder="Add a comment ..."/> 
+      } 
     </div>
   );
 }
