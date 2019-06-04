@@ -51,7 +51,7 @@ class App extends Component {
   likePostHandler = (id, likes) => {
     this.state.postIds.map((postId, idx) => {
       if(postId === id) {
-        return this.setState(prevState => ({
+        this.setState(prevState => ({
           postlikes: prevState.postLikes[idx] = likes + 1,
         }))
       }   

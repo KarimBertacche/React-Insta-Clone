@@ -2,14 +2,17 @@ import React from 'react';
 import './MomentComponent.css';
 import moment from 'moment';
 
-let newDate = Date.parse("July 17 2017, 12:42:40 pm");
-
-
 function MomentComponent(props) {
+    const correctDate = () => {
+        let newDate = props.date.split('').filter(el => el !== 't' && el !== 'h').join('');
+        newDate = Date.parse(newDate);
+        return newDate;
+    }
+    
     return(
         <p className="post-date">
             {
-                moment(newDate).startOf('day').fromNow()
+                moment(correctDate()).startOf('day').fromNow()
             }
         </p> 
     )

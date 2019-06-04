@@ -70,9 +70,9 @@ class CommentSection extends Component{
           }
         </div>
         <div>
-          <MomentComponent />
+          <MomentComponent 
+            date={this.props.data.timestamp}/>
           <NewCommentSection 
-            data={this.props.data}
             value={this.state.newComment}
             changed={this.inputChangeHandler}
             clicked={this.postCommentHandler}  
