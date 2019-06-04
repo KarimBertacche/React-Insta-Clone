@@ -2,23 +2,31 @@ import React from 'react';
 import './CommentSection.css';
 import pt from 'prop-types';
 import uuid from 'uuid';
+import MomentComponent from '../MomentComponent/MomentComponent';
+import NewCommentSection from '../NewCommentSection/NewCommentSection';
 
 function CommentSection(props) {
-    return(
+  return(
+    <>
       <div className="comment-section">
         {
           props.comments.map(comment => {
-            return(
-                <p className="comment" 
-                    key={uuid()}>
-                      <span className="username"
-                      >{comment.username} </span>
-                    {comment.text}</p>
+            return(        
+              <p className="comment" 
+                key={uuid()}>
+                  <span className="username"
+                  >{comment.username} </span>
+              {comment.text}</p>
             )
           })
-        } 
+        }
       </div>
-    );
+      <div>
+        <MomentComponent />
+        <NewCommentSection />
+      </div>  
+    </>
+  );
 }
 
 CommentSection.propTypes = {

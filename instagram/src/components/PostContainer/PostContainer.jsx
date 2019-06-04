@@ -2,7 +2,6 @@ import React from 'react';
 import './PostContainer.css';
 import CommentSection from '../CommentSection/CommentSection';
 import pt from 'prop-types';
-import moment from 'moment';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart } from '@fortawesome/free-regular-svg-icons';
 import { faComment } from '@fortawesome/free-regular-svg-icons';
@@ -26,23 +25,13 @@ function PostContainer(props) {
                 </div>
                 <p className="tot-likes">{props.data.likes} likes</p>
                 <CommentSection 
-                comments={props.data.comments} 
-                value={props.value}
-                changes={props.changes}/>            
+                    comments={props.data.comments}
+                    data={props.data}
+                    value={props.value}
+                    changed={props.changes}
+                    clicked={props.clicked}      
+                    />            
             </div>
-            <p className="post-date">
-                {
-                    moment().startOf("July 17th 2017, 12:42:40 pm").fromNow()
-                }
-            </p>
-            <div className="newComment-section">
-                <input 
-                type="text" 
-                value={props.value}
-                onChange={props.changes} 
-                placeholder="Add a comment ..."/> 
-                <span></span>
-            </div> 
         </div>
     );
 }

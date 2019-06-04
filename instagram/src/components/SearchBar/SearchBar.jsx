@@ -23,7 +23,8 @@ function SearchBar(props) {
           <input 
             className="search-bar"
             type="text"
-            value={props.searchValue}
+            value={props.searchInput}
+            onChange={props.searchValue}
             placeholder={` Search`}/>
         </div> 
         <div className="nav-icons">
