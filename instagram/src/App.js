@@ -10,13 +10,14 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      instaData: dummyData,
+      instaData: [],
       inputSearch: '', 
       postIds: dummyData.map(dataObj => dataObj.id = `${uuid()}`),
       postLikes: dummyData.map(dataObj => dataObj.likes),
     }
   }
-  // componentWillMount() {
+
+  // componentDidMount() {
   //   localStorage.getItem('instaPost') && this.setState({
   //     instaData: JSON.parse(localStorage.getItem('instaPost')),
   //   })
@@ -57,9 +58,9 @@ class App extends Component {
     })
   }
 
-  // componentWillUpdate(nextProps, nextState) {
-  //   localStorage.setItem('instaPost', JSON.stringify(nextState.instaData));
-  // }
+  componentWillUpdate(nextProps, nextState) {
+    localStorage.setItem('instaPost', JSON.stringify(nextState.instaData));
+  }
 
   render() {
     return (

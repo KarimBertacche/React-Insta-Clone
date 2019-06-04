@@ -20,20 +20,38 @@ class CommentSection extends Component{
     })
   } 
 
-  addNewComment = event => {
+  newCommentObject = () => {
     let newCommentObj = {
       username: "anonymous",
       text: this.state.newComment
     }
+    return newCommentObj
+  }
 
+  addNewComment = event => {
+    let newPostComment = this.newCommentObject();
+    
+    // let newCommentArr = this.state.comments.concat(newCommentObj)
     if(event.key === 'Enter' && this.state.newComment !== '') {
-      let newCommentArr = this.state.comments.concat(newCommentObj)
+      let newCommentArr = [newPostComment].concat(this.state.comments)
       this.setState({
         comments: newCommentArr,
         newComment: '',
       })
     }     
   } 
+
+  postCommentHandler = () => {
+    let newPostComment = this.newCommentObject();
+
+    if(this.state.newComment !== '') {
+      let newCommentArr = [newPostComment].concat(this.state.comments)
+      this.setState({
+        comments: newCommentArr,
+        newComment: '',
+      })
+    }
+  }
 
   render() {
     return(
@@ -57,7 +75,7 @@ class CommentSection extends Component{
             data={this.props.data}
             value={this.state.newComment}
             changed={this.inputChangeHandler}
-            clicked={this.props.clicked}  
+            clicked={this.postCommentHandler}  
             keyPress={this.addNewComment}/>
         </div>  
       </>
@@ -73,3 +91,6 @@ CommentSection.propTypes = {
 }
 
 export default CommentSection;
+
+
+
