@@ -10,16 +10,21 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      instaData: [],
+      instaData: dummyData,
       inputSearch: '', 
       postIds: dummyData.map(dataObj => dataObj.id = `${uuid()}`),
       postLikes: dummyData.map(dataObj => dataObj.likes),
     }
   }
+  // componentWillMount() {
+  //   localStorage.getItem('instaPost') && this.setState({
+  //     instaData: JSON.parse(localStorage.getItem('instaPost')),
+  //   })
+  // }
 
   componentDidMount() {
     this.setState({
-      instaData: dummyData
+      instaData: dummyData,
     })
   }
 
@@ -29,15 +34,32 @@ class App extends Component {
     })
   }
 
+  searchNowHandler = event => {
+    let newDataArr = this.state.instaData;
+
+    if(event.key === 'Enter' && this.state.inputSearch !== '') {
+      let searchItem = newDataArr.filter(dataObj => dataObj.username.toLowerCase().startsWith(this.state.inputSearch.toLowerCase()));
+
+      this.setState({
+        instaData: searchItem,
+        inputSearch: ''
+      })
+    }
+  }
+
   likePostHandler = (id, likes) => {
     this.state.postIds.map((postId, idx) => {
       if(postId === id) {
-        this.setState({
-          postlikes: this.state.postLikes[idx] = likes + 1,
-        })
+        return this.setState(prevState => ({
+          postlikes: prevState.postLikes[idx] = likes + 1,
+        }))
       }   
     })
   }
+
+  // componentWillUpdate(nextProps, nextState) {
+  //   localStorage.setItem('instaPost', JSON.stringify(nextState.instaData));
+  // }
 
   render() {
     return (
@@ -45,6 +67,7 @@ class App extends Component {
         <SearchBar 
           searchInput={this.state.inputSearch}
           searchValue={this.searchBarHandler}
+          searchNow={this.searchNowHandler}
         />
         {
           this.state.instaData.map((dataObj, idx) => {
