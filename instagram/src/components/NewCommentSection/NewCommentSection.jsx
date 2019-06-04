@@ -10,7 +10,8 @@ function NewCommentSection(props) {
                 type="text" 
                 value={props.value}
                 onChange={props.changed} 
-                placeholder="Add a comment ..."/> 
+                placeholder="Add a comment ..."
+                onKeyPress={props.keyPress}/> 
             <button
                 className="post-comment"
                 onClick={props.clicked}

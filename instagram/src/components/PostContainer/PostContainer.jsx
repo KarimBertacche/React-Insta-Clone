@@ -20,17 +20,13 @@ function PostContainer(props) {
             </figure>
             <div className="comment-wrapper">
                 <div className="comment-icons">
-                    <FontAwesomeIcon className="comment-logo" icon={faHeart} />
+                    <FontAwesomeIcon className="comment-logo" onClick={() => props.likePostHandler(props.id, props.postLikes)} icon={faHeart} />
                     <FontAwesomeIcon className="comment-logo" icon={faComment} />
                 </div>
-                <p className="tot-likes">{props.data.likes} likes</p>
+                <p className="tot-likes">{props.postLikes} likes</p>
                 <CommentSection 
-                    comments={props.data.comments}
-                    data={props.data}
-                    value={props.value}
-                    changed={props.changes}
-                    clicked={props.clicked}      
-                    />            
+                    comments={props.data.comments}  
+                    />           
             </div>
         </div>
     );

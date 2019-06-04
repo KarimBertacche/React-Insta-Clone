@@ -10,11 +10,17 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      instaData: dummyData,
-      inputSearch: '',
-      newComment: '',
-      postedComments: dummyData.map(data => data.comments),
+      instaData: [],
+      inputSearch: '', 
+      postIds: dummyData.map(dataObj => dataObj.id = `${uuid()}`),
+      postLikes: dummyData.map(dataObj => dataObj.likes),
     }
+  }
+
+  componentDidMount() {
+    this.setState({
+      instaData: dummyData
+    })
   }
 
   searchBarHandler = event => {
@@ -23,19 +29,15 @@ class App extends Component {
     })
   }
 
-  inputChangeHandler = event => {   
-    this.setState({
-      newComment: event.target.value,
-    })
-  } 
-
-  postCommentHandler = () => {
-    console.log(this.state.postedComments);
-    this.setState({
-      postedComments: this.state.postedComments.concat(this.state.newComment),
+  likePostHandler = (id, likes) => {
+    this.state.postIds.map((postId, idx) => {
+      if(postId === id) {
+        this.setState({
+          postlikes: this.state.postLikes[idx] = likes + 1,
+        })
+      }   
     })
   }
-
 
   render() {
     return (
@@ -45,13 +47,13 @@ class App extends Component {
           searchValue={this.searchBarHandler}
         />
         {
-          this.state.instaData.map(dataObj => {
+          this.state.instaData.map((dataObj, idx) => {
             return <PostContainer 
                       key={uuid()} 
+                      id={this.state.postIds[idx]}
                       data={dataObj}
-                      value={this.state.newComment}
-                      changes={this.inputChangeHandler}
-                      clicked={this.postCommentHandler}/>
+                      postLikes={this.state.postLikes[idx]}
+                      likePostHandler={this.likePostHandler}/>
           })        
         }
       </div>
