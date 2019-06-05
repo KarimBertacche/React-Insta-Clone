@@ -25,7 +25,8 @@ function SearchBar(props) {
             type="text"
             value={props.searchInput}
             onChange={props.searchValue}
-            placeholder={` Search`}/>
+            placeholder={` Search`}
+            onKeyPress={props.searchNow}/>
         </div> 
         <div className="nav-icons">
           <FontAwesomeIcon className="nav-logo" icon={faCompass} />

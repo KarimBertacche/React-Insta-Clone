@@ -10,10 +10,21 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
+      instaData: [],
+      inputSearch: '', 
+      postIds: dummyData.map(dataObj => dataObj.id = `${uuid()}`),
+      postLikes: dummyData.map(dataObj => dataObj.likes),
+    }
+  }
+
+  componentDidMount() {
+    this.setState({
       instaData: dummyData,
-      inputSearch: '',
-      newComment: '',
-      postedComments: dummyData.map(data => data.comments),
+    })
+    if(this.state.instaData === dummyData) {
+      localStorage.getItem('instaData') && this.setState({
+        instaData: JSON.parse(localStorage.getItem('instaData')),
+      });
     }
   }
 
@@ -23,19 +34,33 @@ class App extends Component {
     })
   }
 
-  inputChangeHandler = event => {   
-    this.setState({
-      newComment: event.target.value,
-    })
-  } 
+  searchNowHandler = event => {
+    let newDataArr = this.state.instaData;
 
-  postCommentHandler = () => {
-    console.log(this.state.postedComments);
-    this.setState({
-      postedComments: this.state.postedComments.concat(this.state.newComment),
+    if(event.key === 'Enter' && this.state.inputSearch !== '') {
+      let searchItem = newDataArr.filter(dataObj => dataObj.username.toLowerCase().startsWith(this.state.inputSearch.toLowerCase()));
+
+      this.setState({
+        instaData: searchItem,
+        inputSearch: ''
+      })
+    }
+  }
+
+  likePostHandler = (id, likes) => {
+    this.state.postIds.map((postId, idx) => {
+      if(postId === id) {
+        return this.setState(prevState => ({
+          postlikes: prevState.postLikes[idx] = likes + 1,
+        }))
+      }  
+      return null
     })
   }
 
+  componentDidUpdate(nextProps, nextState) {
+    localStorage.setItem('instaPost', JSON.stringify(nextState.instaData));
+  }
 
   render() {
     return (
@@ -43,15 +68,16 @@ class App extends Component {
         <SearchBar 
           searchInput={this.state.inputSearch}
           searchValue={this.searchBarHandler}
+          searchNow={this.searchNowHandler}
         />
         {
-          this.state.instaData.map(dataObj => {
+          this.state.instaData.map((dataObj, idx) => {
             return <PostContainer 
                       key={uuid()} 
+                      id={this.state.postIds[idx]}
                       data={dataObj}
-                      value={this.state.newComment}
-                      changes={this.inputChangeHandler}
-                      clicked={this.postCommentHandler}/>
+                      postLikes={this.state.postLikes[idx]}
+                      likePostHandler={this.likePostHandler}/>
           })        
         }
       </div>

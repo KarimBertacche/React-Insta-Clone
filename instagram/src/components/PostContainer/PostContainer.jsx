@@ -7,6 +7,7 @@ import { faHeart } from '@fortawesome/free-regular-svg-icons';
 import { faComment } from '@fortawesome/free-regular-svg-icons';
 
 function PostContainer(props) {
+
     return(
         <div className="post-wrapper">
             <div className="header-wrapper">
@@ -20,17 +21,14 @@ function PostContainer(props) {
             </figure>
             <div className="comment-wrapper">
                 <div className="comment-icons">
-                    <FontAwesomeIcon className="comment-logo" icon={faHeart} />
+                    <FontAwesomeIcon className="comment-logo" onClick={() => props.likePostHandler(props.id, props.postLikes)} icon={faHeart} />
                     <FontAwesomeIcon className="comment-logo" icon={faComment} />
                 </div>
-                <p className="tot-likes">{props.data.likes} likes</p>
+                <p className="tot-likes">{props.postLikes} likes</p>
                 <CommentSection 
-                    comments={props.data.comments}
+                    comments={props.data.comments}  
                     data={props.data}
-                    value={props.value}
-                    changed={props.changes}
-                    clicked={props.clicked}      
-                    />            
+                    />           
             </div>
         </div>
     );
@@ -51,3 +49,5 @@ PostContainer.propTypes = {
 }
 
 export default PostContainer;
+
+
