@@ -1,5 +1,20 @@
 import React from 'react';
 import './LoginPage.css';
+import styled from 'styled-components';
+
+const Button = styled.button` 
+    border-radius: 3px;
+    color: palevioletred;
+    width: 100px;
+    padding: 5px;
+    background: transparent;
+    border: 3px solid #000;
+    border-radius: 5px;
+    color: #000;
+    font-size: 1.5rem;
+    font-weight: bold;
+    cursor: pointer;
+`
 
 function LoginPage(props) {
     return (
@@ -22,7 +37,7 @@ function LoginPage(props) {
                     pattern=".{8,12}" 
                     required title="8 to 12 characters"/>
             </div>
-            <button onClick={props.onClick}>Login</button>
+            <Button onClick={props.onClick}>Login</Button>         
         </div>
     );
 }
