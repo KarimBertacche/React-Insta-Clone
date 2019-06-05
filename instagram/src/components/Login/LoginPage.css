@@ -32,7 +32,16 @@ label {
     font-size: 1.6rem;
     padding: 0 5px;
     text-align: center;
-    outline: 0;
+}
+
+.login-username:invalid,
+.login-password:invalid {
+    outline-color: #f00;
+}
+
+.login-username:valid,
+.login-password:valid {
+    outline-color: #0f0;
 }
 
 button {

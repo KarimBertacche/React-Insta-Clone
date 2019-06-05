@@ -9,14 +9,18 @@ function LoginPage(props) {
                 <input 
                     type="text" 
                     className="login-username" 
-                    onChange={props.userInputHandler}/>
+                    onChange={props.userInputHandler}
+                    pattern=".{3,10}" 
+                    required title="8 to 12 characters"/>
             </div>
             <div className="password-wrapper">
                 <label>Password</label>
                 <input 
                     type="password" 
                     className="login-password" 
-                    onChange={props.passwordInputHandler}/>
+                    onChange={props.passwordInputHandler}
+                    pattern=".{8,12}" 
+                    required title="8 to 12 characters"/>
             </div>
             <button onClick={props.onClick}>Login</button>
         </div>

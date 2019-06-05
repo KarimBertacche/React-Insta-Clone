@@ -13,14 +13,16 @@ const withAuthenticate = (Component) => (ComponentTwo) => {
         } 
 
         addNewUser = () => {
-            localStorage.setItem('usernameData', this.state.userInput);
-            localStorage.setItem('passwordData', this.state.passwordInput);
-            const getUser = localStorage.getItem('usernameData');
-            const getPassword = localStorage.getItem('passwordData');
-            this.setState({
-                newLogin: getUser,
-                passwordInput: getPassword
-            });
+            if(this.state.passwordInput.length > 8) {
+                localStorage.setItem('usernameData', this.state.userInput);
+                localStorage.setItem('passwordData', this.state.passwordInput);
+                const getUser = localStorage.getItem('usernameData');
+                const getPassword = localStorage.getItem('passwordData');
+                this.setState({
+                    newLogin: getUser,
+                    passwordInput: getPassword
+                });
+            }      
         }
 
         userInputHandler = event => {
@@ -48,6 +50,7 @@ const withAuthenticate = (Component) => (ComponentTwo) => {
                             passwordInputHandler={this.passwordInputHandler}
                             onClick={this.addNewUser} 
                             {...this.props}/>
+                            
                     }
                 </div>
             );
