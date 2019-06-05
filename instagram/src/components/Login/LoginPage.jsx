@@ -26,7 +26,7 @@ function LoginPage(props) {
                     className="login-username" 
                     onChange={props.userInputHandler}
                     pattern=".{3,10}" 
-                    required title="8 to 12 characters"/>
+                    required title="3 to 10 characters"/>
             </div>
             <div className="password-wrapper">
                 <label>Password</label>

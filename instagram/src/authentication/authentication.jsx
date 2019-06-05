@@ -13,7 +13,7 @@ const withAuthenticate = (Component) => (ComponentTwo) => {
         } 
 
         addNewUser = () => {
-            if(this.state.passwordInput.length > 8) {
+            if(this.state.passwordInput.length >= 8) {
                 localStorage.setItem('usernameData', this.state.userInput);
                 localStorage.setItem('passwordData', this.state.passwordInput);
                 const getUser = localStorage.getItem('usernameData');
