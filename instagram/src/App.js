@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
 import './App.css';
 import dummyData from './dummy-data';
+import withAuthenticate from './components/authentication/authentication';
 import PostsPage from './components/PostContainer/PostsPage';
 import uuid from 'uuid';
+
+const ComponentFromWithAuthenticate = withAuthenticate(PostsPage);
 
 class App extends Component {
   constructor() {
@@ -59,10 +62,10 @@ class App extends Component {
   componentDidUpdate(nextProps, nextState) {
       localStorage.setItem('instaPost', JSON.stringify(nextState.instaData));
   }
-  
+
   render() {
     return (
-      <PostsPage 
+      <ComponentFromWithAuthenticate
         inputSearch={this.state.inputSearch}
         instaData={this.state.instaData}
         postIds={this.state.postIds}
