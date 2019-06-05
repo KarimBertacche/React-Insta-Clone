@@ -5,7 +5,7 @@
     align-items: center;
     width: 400px;
     height: 300px;
-    border: 3px solid #000;
+    border: 3px solid #dd2a7b;
     border-radius: 5px;
     margin: 50px auto 0;
 }
@@ -21,13 +21,14 @@
 
 label {
     margin-bottom: 5px;
+    color: #dd2a7b;
 }
 
 .login-username,
 .login-password {
     width: 200px;
     height: 25px;
-    border: 3px solid #000;
+    border: 3px solid #dd2a7b;
     border-radius: 5px;
     font-size: 1.6rem;
     padding: 0 5px;
@@ -44,21 +45,10 @@ label {
     outline-color: #0f0;
 }
 
-button {
-    width: 100px;
-    padding: 5px;
-    border: 3px solid #000;
-    border-radius: 5px;
-    color: #000;
-    font-size: 1.5rem;
-    font-weight: bold;
-    cursor: pointer;
-}
-
 button:hover {
-    border: 3px solid #000;
+    border: 3px solid #dd2a7b;
     border-radius: 5px;
-    background-color: #000;
-    color: #fff;
+    background-color: #515bd4;
+    color: #dd2a7b;
 }
 
