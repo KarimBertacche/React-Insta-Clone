@@ -4,18 +4,8 @@ class LoginPage extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            userInput: '',
+           
         }
-    }
-
-    userInputHandler = event => {
-        this.setState({
-            userInput: event.target.value,
-        })
-    }
-
-    clickLoginHandler = () => {
-        localStorage.setItem('usernameData', this.state.userInput);
     }
 
     render() {
@@ -28,7 +18,7 @@ class LoginPage extends React.Component {
                 <input 
                     type="password" 
                     className="login-passWord" />
-                <button onClick={this.clickLoginHandler}>Login</button>
+                <button onClick={this.props.onClick}>Login</button>
             </div>
         );
     }
