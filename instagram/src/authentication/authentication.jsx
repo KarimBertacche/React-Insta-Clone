@@ -7,14 +7,18 @@ const withAuthenticate = (Component) => (ComponentTwo) => {
             this.state = {
                 newLogin: '',
                 userInput: '',
+                passwordInput: ''
             }
         } 
 
         addNewUser = () => {
             localStorage.setItem('usernameData', this.state.userInput);
+            localStorage.setItem('passwordData', this.state.passwordInput);
             const getUser = localStorage.getItem('usernameData');
+            const getPassword = localStorage.getItem('passwordData');
             this.setState({
-                newLogin: getUser
+                newLogin: getUser,
+                passwordInput: getPassword
             });
         }
 
@@ -24,13 +28,23 @@ const withAuthenticate = (Component) => (ComponentTwo) => {
             })
         }
 
+        passwordInputHandler = event => {
+            this.setState({
+                passwordInput: event.target.value,
+            })
+        }
+
         render() {
             return (
                 <div>
                     {
-                        this.state.newLogin !== '' ?
+                        this.state.newLogin !== '' && this.state.passwordInput !== '' ?
                         <Component {...this.props}/>
-                        : <ComponentTwo userInputHandler={this.userInputHandler} onClick={this.addNewUser} {...this.props}/>
+                        : <ComponentTwo 
+                            userInputHandler={this.userInputHandler} 
+                            passwordInputHandler={this.passwordInputHandler}
+                            onClick={this.addNewUser} 
+                            {...this.props}/>
                     }
                 </div>
             );

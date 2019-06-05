@@ -15,7 +15,8 @@ function LoginPage(props) {
                 <label>Password</label>
                 <input 
                     type="password" 
-                    className="login-passWord" />
+                    className="login-passWord" 
+                    onChange={props.passwordInputHandler}/>
             </div>
             <button onClick={props.onClick}>Login</button>
         </div>
