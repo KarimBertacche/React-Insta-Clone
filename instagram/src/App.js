@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
 import dummyData from './dummy-data';
-import SearchBar from './components/SearchBar/SearchBar';
-import PostContainer from './components/PostContainer/PostContainer';
+import PostsPage from './components/PostContainer/PostsPage';
 import uuid from 'uuid';
-
 
 class App extends Component {
   constructor() {
@@ -18,69 +16,60 @@ class App extends Component {
   }
 
   componentDidMount() {
-    this.setState({
-      instaData: dummyData,
-    })
-    if(this.state.instaData === dummyData) {
-      localStorage.getItem('instaData') && this.setState({
-        instaData: JSON.parse(localStorage.getItem('instaData')),
-      });
-    }
+      this.setState({
+          instaData: dummyData,
+      })
+      if(this.state.instaData === dummyData) {
+          localStorage.getItem('instaData') && this.setState({
+          instaData: JSON.parse(localStorage.getItem('instaData')),
+          });
+      }
   }
 
   searchBarHandler = event => {
-    this.setState({
-      inputSearch: event.target.value,
-    })
+      this.setState({
+          inputSearch: event.target.value,
+      })
   }
 
   searchNowHandler = event => {
-    let newDataArr = this.state.instaData;
+      let newDataArr = this.state.instaData;
 
-    if(event.key === 'Enter' && this.state.inputSearch !== '') {
-      let searchItem = newDataArr.filter(dataObj => dataObj.username.toLowerCase().startsWith(this.state.inputSearch.toLowerCase()));
+      if(event.key === 'Enter' && this.state.inputSearch !== '') {
+          let searchItem = newDataArr.filter(dataObj => dataObj.username.toLowerCase().startsWith(this.state.inputSearch.toLowerCase()));
 
-      this.setState({
-        instaData: searchItem,
-        inputSearch: ''
-      })
-    }
+          this.setState({
+          instaData: searchItem,
+          inputSearch: ''
+          })
+      }
   }
 
   likePostHandler = (id, likes) => {
-    this.state.postIds.map((postId, idx) => {
-      if(postId === id) {
-        return this.setState(prevState => ({
-          postlikes: prevState.postLikes[idx] = likes + 1,
-        }))
-      }  
-      return null
-    })
+      this.state.postIds.map((postId, idx) => {
+          if(postId === id) {
+          return this.setState(prevState => ({
+              postlikes: prevState.postLikes[idx] = likes + 1,
+          }))
+          }  
+          return null
+      })
   }
 
   componentDidUpdate(nextProps, nextState) {
-    localStorage.setItem('instaPost', JSON.stringify(nextState.instaData));
+      localStorage.setItem('instaPost', JSON.stringify(nextState.instaData));
   }
-
+  
   render() {
     return (
-      <div className="App">
-        <SearchBar 
-          searchInput={this.state.inputSearch}
-          searchValue={this.searchBarHandler}
-          searchNow={this.searchNowHandler}
-        />
-        {
-          this.state.instaData.map((dataObj, idx) => {
-            return <PostContainer 
-                      key={uuid()} 
-                      id={this.state.postIds[idx]}
-                      data={dataObj}
-                      postLikes={this.state.postLikes[idx]}
-                      likePostHandler={this.likePostHandler}/>
-          })        
-        }
-      </div>
+      <PostsPage 
+        inputSearch={this.state.inputSearch}
+        instaData={this.state.instaData}
+        postIds={this.state.postIds}
+        postLikes={this.state.postLikes}
+        likePostHandler={this.likePostHandler}
+        searchBarHandler={this.searchBarHandler}
+        searchNowHandler={this.searchNowHandler}/>
     );
   } 
 }

@@ -7,7 +7,6 @@ import { faHeart } from '@fortawesome/free-regular-svg-icons';
 import { faComment } from '@fortawesome/free-regular-svg-icons';
 
 function PostContainer(props) {
-
     return(
         <div className="post-wrapper">
             <div className="header-wrapper">
