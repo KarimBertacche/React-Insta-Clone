@@ -3,9 +3,10 @@ import './App.css';
 import dummyData from './dummy-data';
 import withAuthenticate from './authentication/authentication';
 import PostsPage from './components/PostContainer/PostsPage';
+import LoginPage from './components/Login/LoginPage';
 import uuid from 'uuid';
 
-const ComponentFromWithAuthenticate = withAuthenticate(PostsPage);
+const ComponentFromWithAuthenticate = withAuthenticate(PostsPage)(LoginPage);
 
 class App extends Component {
   constructor() {

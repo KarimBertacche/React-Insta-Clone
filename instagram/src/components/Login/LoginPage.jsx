@@ -1,6 +1,6 @@
 import React from 'react';
 
-class Login extends React.Component {
+class LoginPage extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -9,7 +9,7 @@ class Login extends React.Component {
     }
 
     clickLoginHandler = () => {
-        
+
     }
 
     componentDidUpdate(prevProps, prevState) {
@@ -30,3 +30,5 @@ class Login extends React.Component {
         );
     }
 }
+
+export default LoginPage;
