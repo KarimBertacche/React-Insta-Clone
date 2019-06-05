@@ -21,5 +21,3 @@ function NewCommentSection(props) {
 }
 
 export default NewCommentSection;
-
-//props.date.split('').filter(el => el !== 't' && el !== 'h')

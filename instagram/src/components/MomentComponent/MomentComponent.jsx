@@ -3,16 +3,19 @@ import './MomentComponent.css';
 import moment from 'moment';
 
 function MomentComponent(props) {
-    const correctDate = () => {
-        let newDate = props.date.split('').filter(el => el !== 't' && el !== 'h').join('');
-        newDate = Date.parse(newDate);
-        return newDate;
-    }
+
+    let newDate = props.date.split('').filter((el, idx) => {
+        if(idx !== '2' && idx !== '3' && idx !== '4') {
+            return el !== 't' && el !== 'h'
+        }
+        return el
+    }).join('');
+    newDate = Date.parse(newDate);
     
     return(
         <p className="post-date">
             {
-                moment(correctDate()).startOf('day').fromNow()
+                moment(newDate).startOf('minute').fromNow()
             }
         </p> 
     )

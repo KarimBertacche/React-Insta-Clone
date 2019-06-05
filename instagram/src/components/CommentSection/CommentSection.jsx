@@ -4,6 +4,7 @@ import pt from 'prop-types';
 import uuid from 'uuid';
 import MomentComponent from '../MomentComponent/MomentComponent';
 import NewCommentSection from '../NewCommentSection/NewCommentSection';
+import moment from 'moment';
 
 class CommentSection extends Component{
   constructor(props) {
@@ -11,8 +12,15 @@ class CommentSection extends Component{
     this.state = {
       comments: this.props.comments,
       newComment: '',
+      newTimestamp: this.props.data.timestamp
     }
   }
+
+  // componentDidMount() {
+  //   localStorage.getItem('newMessages') && this.setState({
+  //     comments: JSON.parse(localStorage.getItem('newMessages')),
+  //   });
+  // }
 
   inputChangeHandler = event => {   
     this.setState({
@@ -37,6 +45,7 @@ class CommentSection extends Component{
       this.setState({
         comments: newCommentArr,
         newComment: '',
+        newTimestamp: moment().format('MMMM Do YYYY, h:mm:ss a'),
       })
     }     
   } 
@@ -51,6 +60,14 @@ class CommentSection extends Component{
         newComment: '',
       })
     }
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if(prevState.comments < this.state.comments) {
+      this.state.comments.map((comment, idx) => {
+        return localStorage.setItem(`newMessages${idx}`, JSON.stringify(this.state.comments[idx]))
+      })    
+    }  
   }
 
   render() {
@@ -71,7 +88,7 @@ class CommentSection extends Component{
         </div>
         <div>
           <MomentComponent 
-            date={this.props.data.timestamp}/>
+            date={this.state.newTimestamp}/>
           <NewCommentSection 
             value={this.state.newComment}
             changed={this.inputChangeHandler}

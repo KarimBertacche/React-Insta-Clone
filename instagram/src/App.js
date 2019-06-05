@@ -17,16 +17,15 @@ class App extends Component {
     }
   }
 
-  // componentDidMount() {
-  //   localStorage.getItem('instaPost') && this.setState({
-  //     instaData: JSON.parse(localStorage.getItem('instaPost')),
-  //   })
-  // }
-
   componentDidMount() {
     this.setState({
       instaData: dummyData,
     })
+    if(this.state.instaData === dummyData) {
+      localStorage.getItem('instaData') && this.setState({
+        instaData: JSON.parse(localStorage.getItem('instaData')),
+      });
+    }
   }
 
   searchBarHandler = event => {
@@ -51,14 +50,15 @@ class App extends Component {
   likePostHandler = (id, likes) => {
     this.state.postIds.map((postId, idx) => {
       if(postId === id) {
-        this.setState(prevState => ({
+        return this.setState(prevState => ({
           postlikes: prevState.postLikes[idx] = likes + 1,
         }))
-      }   
+      }  
+      return null
     })
   }
 
-  componentWillUpdate(nextProps, nextState) {
+  componentDidUpdate(nextProps, nextState) {
     localStorage.setItem('instaPost', JSON.stringify(nextState.instaData));
   }
 
