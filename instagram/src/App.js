@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import dummyData from './dummy-data';
-import withAuthenticate from './components/authentication/authentication';
+import withAuthenticate from './authentication/authentication';
 import PostsPage from './components/PostContainer/PostsPage';
 import uuid from 'uuid';
 
