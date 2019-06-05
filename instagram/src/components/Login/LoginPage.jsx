@@ -8,12 +8,14 @@ class LoginPage extends React.Component {
         }
     }
 
-    clickLoginHandler = () => {
-
+    userInputHandler = event => {
+        this.setState({
+            userInput: event.target.value,
+        })
     }
 
-    componentDidUpdate(prevProps, prevState) {
-        localStorage.setItem('usernameData', prevState.userInput);
+    clickLoginHandler = () => {
+        localStorage.setItem('usernameData', this.state.userInput);
     }
 
     render() {
@@ -21,7 +23,8 @@ class LoginPage extends React.Component {
             <div>
                 <input 
                     type="text" 
-                    className="login-username" />
+                    className="login-username" 
+                    onChange={this.userInputHandler}/>
                 <input 
                     type="password" 
                     className="login-passWord" />
