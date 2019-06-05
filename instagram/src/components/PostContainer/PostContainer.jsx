@@ -26,8 +26,7 @@ function PostContainer(props) {
                 <p className="tot-likes">{props.postLikes} likes</p>
                 <CommentSection 
                     comments={props.data.comments}  
-                    data={props.data}
-                    />           
+                    data={props.data}/>           
             </div>
         </div>
     );

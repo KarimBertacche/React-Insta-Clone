@@ -7,7 +7,8 @@ const withAuthenticate = (Component) => (ComponentTwo) => {
             this.state = {
                 newLogin: '',
                 userInput: '',
-                passwordInput: ''
+                passwordInput: '',
+                
             }
         } 
 
@@ -39,7 +40,9 @@ const withAuthenticate = (Component) => (ComponentTwo) => {
                 <div>
                     {
                         this.state.newLogin !== '' && this.state.passwordInput !== '' ?
-                        <Component {...this.props}/>
+                        <Component 
+                            username={this.state.newLogin}
+                            {...this.props}/>
                         : <ComponentTwo 
                             userInputHandler={this.userInputHandler} 
                             passwordInputHandler={this.passwordInputHandler}

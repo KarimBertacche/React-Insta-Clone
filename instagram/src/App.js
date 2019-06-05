@@ -16,6 +16,7 @@ class App extends Component {
       inputSearch: '', 
       postIds: dummyData.map(dataObj => dataObj.id = `${uuid()}`),
       postLikes: dummyData.map(dataObj => dataObj.likes),
+      newUser: '',
     }
   }
 
@@ -23,11 +24,12 @@ class App extends Component {
       this.setState({
           instaData: dummyData,
       })
+
       if(this.state.instaData === dummyData) {
           localStorage.getItem('instaData') && this.setState({
           instaData: JSON.parse(localStorage.getItem('instaData')),
           });
-      }
+      };
   }
 
   searchBarHandler = event => {

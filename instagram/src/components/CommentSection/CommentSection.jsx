@@ -12,7 +12,7 @@ class CommentSection extends Component{
     this.state = {
       comments: this.props.comments,
       newComment: '',
-      newTimestamp: this.props.data.timestamp
+      newTimestamp: this.props.data.timestamp,
     }
   }
 
@@ -29,8 +29,9 @@ class CommentSection extends Component{
   } 
 
   newCommentObject = () => {
+    let loggedUser = localStorage.getItem('usernameData')
     let newCommentObj = {
-      username: "anonymous",
+      username: loggedUser,
       text: this.state.newComment
     }
     return newCommentObj
