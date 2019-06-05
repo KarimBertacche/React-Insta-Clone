@@ -11,6 +11,7 @@ const withAuthenticate = (Component) => (ComponentTwo) => {
         } 
 
         addNewUser = () => {
+            localStorage.setItem('usernameData', this.state.userInput);
             const getUser = localStorage.getItem('usernameData');
             this.setState({
                 newLogin: getUser
@@ -22,10 +23,6 @@ const withAuthenticate = (Component) => (ComponentTwo) => {
                 userInput: event.target.value,
             })
         }
-    
-        clickLoginHandler = () => {
-            localStorage.setItem('usernameData', this.state.userInput);
-        }
 
         render() {
             return (
@@ -33,7 +30,7 @@ const withAuthenticate = (Component) => (ComponentTwo) => {
                     {
                         this.state.newLogin !== '' ?
                         <Component {...this.props}/>
-                        : <ComponentTwo onClick={this.addNewUser} {...this.props}/>
+                        : <ComponentTwo userInputHandler={this.userInputHandler} onClick={this.addNewUser} {...this.props}/>
                     }
                 </div>
             );
