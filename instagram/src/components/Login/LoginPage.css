@@ -1,0 +1,54 @@
+.login-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 400px;
+    height: 300px;
+    border: 3px solid #000;
+    border-radius: 5px;
+    margin: 50px auto 0;
+}
+
+.username-wrapper,
+.password-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+    font-size: 2rem;
+}
+
+label {
+    margin-bottom: 5px;
+}
+
+input {
+    width: 200px;
+    height: 25px;
+    border: 3px solid #000;
+    border-radius: 5px;
+    font-size: 1.6rem;
+    padding: 0 5px;
+    text-align: center;
+    outline: 0;
+}
+
+button {
+    width: 100px;
+    padding: 5px;
+    border: 3px solid #000;
+    border-radius: 5px;
+    color: #000;
+    font-size: 1.5rem;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+button:hover {
+    border: 3px solid #000;
+    border-radius: 5px;
+    background-color: #000;
+    color: #fff;
+}
+
