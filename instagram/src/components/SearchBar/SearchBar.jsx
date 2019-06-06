@@ -55,11 +55,11 @@ const StylesSearchBar = styled.header`
 function SearchBar(props) {
     return(
       <StylesSearchBar>
-        <section className="logo-wrapper"> 
-          <div className="insta-logo-wrapper">
+        <section> 
+          <div>
             <FontAwesomeIcon className="insta-logo" icon={faInstagram} />
           </div>   
-          <figure className="insta-writing">
+          <figure>
             <img src={instaLogo} alt="insta writing"/>
           </figure>
         </section>

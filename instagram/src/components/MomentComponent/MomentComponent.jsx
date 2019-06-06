@@ -1,6 +1,17 @@
 import React from 'react';
-import './MomentComponent.css';
 import moment from 'moment';
+import styled from 'styled-components';
+
+const StylesPostDate = styled.p`
+    width: 100%;
+    height: 20px;
+    margin: 0 auto;
+    border-bottom: 3px solid #515bd4;
+    padding-bottom: 5px;
+    font-size: 1.4rem;
+    text-align: left;
+    color: rgb(150, 150, 150);
+`;
 
 function MomentComponent(props) {
 
@@ -13,11 +24,11 @@ function MomentComponent(props) {
     newDate = Date.parse(newDate);
     
     return(
-        <p className="post-date">
+        <StylesPostDate>
             {
                 moment(newDate).startOf('minute').fromNow()
             }
-        </p> 
+        </StylesPostDate> 
     )
 }
 

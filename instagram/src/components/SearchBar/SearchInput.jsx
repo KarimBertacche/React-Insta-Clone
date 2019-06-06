@@ -18,7 +18,6 @@ function SearchInput(props) {
     return(
         <StylesSearchInput>
             <input 
-            className="search-bar"
             type="text"
             value={props.searchInput}
             onChange={props.searchValue}

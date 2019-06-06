@@ -1,5 +1,4 @@
 import React from 'react';
-import './LoginPage.css';
 import styled from 'styled-components';
 
 const Button = styled.button` 
@@ -14,31 +13,79 @@ const Button = styled.button`
     font-size: 1.5rem;
     font-weight: bold;
     cursor: pointer;
+
+    &:hover {
+        border: 3px solid #dd2a7b;
+        border-radius: 5px;
+        background-color: #515bd4;
+        color: #dd2a7b;
+    }
 `
+const StylesLogin = styled.section`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 400px;
+    height: 300px;
+    border: 3px solid #dd2a7b;
+    border-radius: 5px;
+    margin: 50px auto 0;
+
+    div {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 20px;
+        font-size: 2rem;
+
+    }
+
+    label {
+        margin-bottom: 5px;
+        color: #dd2a7b;
+    }
+
+    input{
+        width: 200px;
+        height: 25px;
+        border: 3px solid #dd2a7b;
+        border-radius: 5px;
+        font-size: 1.6rem;
+        padding: 0 5px;
+        text-align: center;
+
+        &:invalid {
+            outline-color: #f00;
+        }
+
+        &:valid {
+            outline-color: #0f0;
+        }
+    }
+`;
 
 function LoginPage(props) {
     return (
-        <div className="login-wrapper">
-            <div className="username-wrapper">
+        <StylesLogin>
+            <div>
                 <label>Username</label>
                 <input 
                     type="text" 
-                    className="login-username" 
                     onChange={props.userInputHandler}
                     pattern=".{3,10}" 
                     required title="3 to 10 characters"/>
             </div>
-            <div className="password-wrapper">
+            <div>
                 <label>Password</label>
                 <input 
                     type="password" 
-                    className="login-password" 
                     onChange={props.passwordInputHandler}
                     pattern=".{8,12}" 
                     required title="8 to 12 characters"/>
             </div>
             <Button onClick={props.onClick}>Login</Button>         
-        </div>
+        </StylesLogin>
     );
 }
 

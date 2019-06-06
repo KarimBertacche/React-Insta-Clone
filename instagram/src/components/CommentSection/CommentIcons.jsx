@@ -5,7 +5,7 @@ import { faComment } from '@fortawesome/free-regular-svg-icons';
 import styled from 'styled-components';
 
 const StyledCommentsIcons = styled.div`
-    .comment-icons {
+    div {
         display: flex; 
     }
 
@@ -20,7 +20,7 @@ const StyledCommentsIcons = styled.div`
         transform: rotateY(180deg);
     }
     
-    .tot-likes {
+    p {
         text-align: left;
         font-size: 1.5rem;
         font-weight: bold;

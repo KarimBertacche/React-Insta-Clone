@@ -34,15 +34,15 @@ const StyledPostWrapper = styled.div`
 function PostContainer(props) {
     return(
         <StyledPostWrapper>
-                <div className="post-wrapper">
+                <div>
                     <PostHeader 
                         thumbnailUrl={props.data.thumbnailUrl}
                         username={props.data.username}
                     />
-                    <figure className="post-image">
+                    <figure>
                         <img src={props.data.imageUrl} alt="post-img" />
                     </figure>
-                    <main className="comment-wrapper">
+                    <main>
                         <CommentSection 
                             comments={props.data.comments}  
                             data={props.data}

@@ -88,7 +88,6 @@ class CommentSection extends Component{
   addNewComment = event => {
     let newPostComment = this.newCommentObject();
     
-    // let newCommentArr = this.state.comments.concat(newCommentObj)
     if(event.key === 'Enter' && this.state.newComment !== '') {
       let newCommentArr = [newPostComment].concat(this.state.comments)
       this.setState({
@@ -169,7 +168,6 @@ class CommentSection extends Component{
             changed={this.inputChangeHandler}
             clicked={this.postCommentHandler}  
             keyPress={this.addNewComment}
-            // onClick={this.likePostHandler}
             />
         </div>  
       </StylesCommentSection>

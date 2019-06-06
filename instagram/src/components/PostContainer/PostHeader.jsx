@@ -34,10 +34,10 @@ const HeaderWrapper = styled.div`
 function PostHeader(props) {
     return (
         <HeaderWrapper>
-            <section className="thumbImg-wrapper">
-                <img className="thumbnail-img" src={props.thumbnailUrl} alt="thumbnail"/>
+            <section>
+                <img src={props.thumbnailUrl} alt="thumbnail"/>
             </section>
-            <h2 className="post-user">{props.username}</h2>
+            <h2 >{props.username}</h2>
         </HeaderWrapper>
     );
 }
