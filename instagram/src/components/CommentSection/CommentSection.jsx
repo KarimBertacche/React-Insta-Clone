@@ -1,10 +1,48 @@
 import React, { Component } from 'react';
-import './CommentSection.css';
 import pt from 'prop-types';
 import uuid from 'uuid';
 import MomentComponent from '../MomentComponent/MomentComponent';
 import NewCommentSection from '../NewCommentSection/NewCommentSection';
+import CommentsIcons from './CommentIcons';
 import moment from 'moment';
+import styled from 'styled-components';
+
+
+const StylesCommentSection = styled.div`
+  section {
+    height: 85px;
+    overflow-y: scroll;
+    padding-top: 0;
+    text-align: left;
+
+    div {
+      margin-bottom: 10px;
+
+      span {
+        &:first-child {
+          font-weight: bold;
+          font-size: 1.5rem;
+        }
+
+        &:last-child {
+          height: 20px;
+          font-size: 1.5rem;
+          margin: 0;
+
+          &:hover {
+            text-decoration: line-through;
+            text-decoration-color: #f00;
+            cursor: pointer;
+          }
+
+          &:last-child {
+            margin-bottom: 0;
+          }
+        }
+      }
+    }
+  }
+`;
 
 class CommentSection extends Component{
   constructor(props) {
@@ -12,15 +50,26 @@ class CommentSection extends Component{
     this.state = {
       comments: this.props.comments,
       newComment: '',
+      commentsArr: [],
       newTimestamp: this.props.data.timestamp,
+      dataName: this.props.data.id,
+      username: '',
+      postLikes: this.props.likes,
     }
   }
 
-  // componentDidMount() {
-  //   localStorage.getItem('newMessages') && this.setState({
-  //     comments: JSON.parse(localStorage.getItem('newMessages')),
-  //   });
-  // }
+  componentDidMount() {
+    let newCommentsArr = localStorage.getItem('commentsArr');
+    let loggedUser = localStorage.getItem('usernameData');
+    this.setState({
+      username: loggedUser,
+      commentsArr: newCommentsArr
+    })
+    // let newComment = localStorage.getItem(this.props.id);
+    // this.setState({
+    //   comments: newComment,
+    // })
+  }
 
   inputChangeHandler = event => {   
     this.setState({
@@ -29,9 +78,8 @@ class CommentSection extends Component{
   } 
 
   newCommentObject = () => {
-    let loggedUser = localStorage.getItem('usernameData')
     let newCommentObj = {
-      username: loggedUser,
+      username: this.state.username,
       text: this.state.newComment
     }
     return newCommentObj
@@ -48,6 +96,7 @@ class CommentSection extends Component{
         newComment: '',
         newTimestamp: moment().format('MMMM Do YYYY, h:mm:ss a'),
       })
+      localStorage.setItem('comments', JSON.stringify(newCommentArr));
     }     
   } 
 
@@ -63,30 +112,55 @@ class CommentSection extends Component{
     }
   }
 
+  removeCommentHandler = (event) => {
+    let selectedComment = event.target.textContent;
+
+    const newCommentArr = this.state.comments.filter(comment => comment.text !== selectedComment);
+
+    this.setState({
+      comments: newCommentArr,
+    })   
+  }
+
+  likePostHandler = () => {
+    this.props.postIds.map(postId => {
+      if(postId === this.props.id) {        
+        return this.setState(prevState => ({    
+            postLikes: prevState.postLikes + 1,
+        }))
+      }  
+      return null
+    })
+  }
+
   componentDidUpdate(prevProps, prevState) {
-    if(prevState.comments < this.state.comments) {
-      this.state.comments.map((comment, idx) => {
-        return localStorage.setItem(`newMessages${idx}`, JSON.stringify(this.state.comments[idx]))
-      })    
-    }  
+    if(prevState.comments < this.state.comments && this.props.data.id === this.state.dataName) {
+      return localStorage.setItem(`${this.state.dataName}`, JSON.stringify(this.state.comments))
+    }   
   }
 
   render() {
     return(
-      <>
-        <div className="comment-section">
+      <StylesCommentSection>
+        <CommentsIcons 
+          likePostHandler={this.likePostHandler}
+          postLikes={this.state.postLikes}
+        />    
+        <section>
           {
             this.state.comments.map(comment => {
-              return(        
-                <p className="comment" 
+              return(  
+                <div 
                   key={uuid()}>
-                    <span className="username"
-                    >{comment.username} </span>
-                {comment.text}</p>
-              )
+                  <span   
+                  >{comment.username} </span>      
+                  <span
+                    onClick={this.removeCommentHandler}>{comment.text}</span>
+                </div>
+              );
             })
           }
-        </div>
+        </section>
         <div>
           <MomentComponent 
             date={this.state.newTimestamp}/>
@@ -94,9 +168,11 @@ class CommentSection extends Component{
             value={this.state.newComment}
             changed={this.inputChangeHandler}
             clicked={this.postCommentHandler}  
-            keyPress={this.addNewComment}/>
+            keyPress={this.addNewComment}
+            // onClick={this.likePostHandler}
+            />
         </div>  
-      </>
+      </StylesCommentSection>
     );
   }
 }

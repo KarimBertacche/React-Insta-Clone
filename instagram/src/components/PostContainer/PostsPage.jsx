@@ -3,6 +3,13 @@ import './PostContainer.css';
 import SearchBar from '../SearchBar/SearchBar';
 import PostContainer from './PostContainer';
 import uuid from 'uuid';
+import styled from 'styled-components';
+
+const StyledPosts = styled.div`
+
+
+
+`;
 
 const PostsPage = props => {
     return (
@@ -18,6 +25,7 @@ const PostsPage = props => {
                         key={uuid()} 
                         id={props.postIds[idx]}
                         data={dataObj}
+                        postIds={props.postIds}
                         postLikes={props.postLikes[idx]}
                         likePostHandler={props.likePostHandler}/>
             })        

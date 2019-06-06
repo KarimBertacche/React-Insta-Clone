@@ -13,6 +13,7 @@ class App extends Component {
     super();
     this.state = {
       instaData: [],
+      commentsData: [],
       inputSearch: '', 
       postIds: dummyData.map(dataObj => dataObj.id = `${uuid()}`),
       postLikes: dummyData.map(dataObj => dataObj.likes),
@@ -21,8 +22,11 @@ class App extends Component {
   }
 
   componentDidMount() {
+      const commentsArr = dummyData.map(comment => comment.comments)
+
       this.setState({
           instaData: dummyData,
+          commentsData: commentsArr,
       })
 
       if(this.state.instaData === dummyData) {
@@ -30,6 +34,8 @@ class App extends Component {
           instaData: JSON.parse(localStorage.getItem('instaData')),
           });
       };
+
+      localStorage.setItem('commentsArr', JSON.stringify(commentsArr));
   }
 
   searchBarHandler = event => {
@@ -51,16 +57,16 @@ class App extends Component {
       }
   }
 
-  likePostHandler = (id, likes) => {
-      this.state.postIds.map((postId, idx) => {
-          if(postId === id) {
-          return this.setState(prevState => ({
-              postlikes: prevState.postLikes[idx] = likes + 1,
-          }))
-          }  
-          return null
-      })
-  }
+//   likePostHandler = (event, id, likes) => {
+//       this.state.postIds.map((postId, idx) => {
+//           if(postId === id) {
+//           return this.setState(prevState => ({
+//               postlikes: prevState.postLikes[idx] = likes + 1,
+//           }))
+//           }  
+//           return null
+//       })
+//   }
 
   componentDidUpdate(nextProps, nextState) {
       localStorage.setItem('instaPost', JSON.stringify(nextState.instaData));

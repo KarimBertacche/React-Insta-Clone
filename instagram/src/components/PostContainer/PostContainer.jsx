@@ -2,9 +2,6 @@ import React from 'react';
 import './PostContainer.css';
 import CommentSection from '../CommentSection/CommentSection';
 import pt from 'prop-types';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHeart } from '@fortawesome/free-regular-svg-icons';
-import { faComment } from '@fortawesome/free-regular-svg-icons';
 
 function PostContainer(props) {
     return(
@@ -19,14 +16,13 @@ function PostContainer(props) {
                 <img src={props.data.imageUrl} alt="post-img" />
             </figure>
             <div className="comment-wrapper">
-                <div className="comment-icons">
-                    <FontAwesomeIcon className="comment-logo" onClick={() => props.likePostHandler(props.id, props.postLikes)} icon={faHeart} />
-                    <FontAwesomeIcon className="comment-logo" icon={faComment} />
-                </div>
-                <p className="tot-likes">{props.postLikes} likes</p>
                 <CommentSection 
                     comments={props.data.comments}  
-                    data={props.data}/>           
+                    data={props.data}
+                    id={props.id}
+                    postIds={props.postIds}
+                    likes={props.postLikes}
+                    likePostHandler={props.likePostHandler}/>           
             </div>
         </div>
     );
