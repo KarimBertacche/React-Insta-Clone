@@ -1,5 +1,5 @@
 import React from 'react';
-import SearchInput from 'react';
+import SearchInput from './SearchInput';
 import HeaderLogos from './HeaderLogos';
 import instaLogo from '../../insta-writing.png'; 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -42,13 +42,14 @@ const StylesSearchBar = styled.header`
     width: 80%;
     margin-left: 0;
 
-    img {
+    & img {
         display: flex;
         justify-content: flex-start;
         width: 60%;
         margin-left: 0;
     } 
   }
+  
 `;
 
 function SearchBar(props) {
@@ -69,6 +70,7 @@ function SearchBar(props) {
         />
         <HeaderLogos />
       </StylesSearchBar>
+  
     );
 }
 

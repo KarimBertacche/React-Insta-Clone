@@ -5,10 +5,15 @@ import { faHeart } from '@fortawesome/free-regular-svg-icons';
 import { faUser } from '@fortawesome/free-regular-svg-icons';
 import styled from 'styled-components';
 
-const StylesHeaderLogos = styled.section`
+const StylesHeaderLogos = styled.div`
     width: 32%;
     display: flex;
     justify-content: flex-end;
+    font-size: 3.5rem;
+
+    &:last-child {
+        margin-right: 0;
+    }
 
     .nav-logo {
         font-size: 3.5rem;
@@ -16,6 +21,7 @@ const StylesHeaderLogos = styled.section`
         cursor: pointer;
     }
 `;
+
 
 function HeaderLogos() {
     return(
