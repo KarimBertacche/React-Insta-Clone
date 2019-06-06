@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import './App.css';
 import dummyData from './dummy-data';
 import withAuthenticate from './authentication/authentication';
 import PostsPage from './components/PostContainer/PostsPage';
@@ -56,17 +55,6 @@ class App extends Component {
           })
       }
   }
-
-//   likePostHandler = (event, id, likes) => {
-//       this.state.postIds.map((postId, idx) => {
-//           if(postId === id) {
-//           return this.setState(prevState => ({
-//               postlikes: prevState.postLikes[idx] = likes + 1,
-//           }))
-//           }  
-//           return null
-//       })
-//   }
 
   componentDidUpdate(nextProps, nextState) {
       localStorage.setItem('instaPost', JSON.stringify(nextState.instaData));
