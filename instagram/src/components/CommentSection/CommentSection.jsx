@@ -55,20 +55,17 @@ class CommentSection extends Component{
       dataName: this.props.data.id,
       username: '',
       postLikes: this.props.likes,
+      postIdx: this.props.postIdx,
+      allCommentsData: this.props.allCommentsData
     }
   }
 
   componentDidMount() {
-    let newCommentsArr = localStorage.getItem('commentsArr');
+    // let newCommentsArr = localStorage.getItem('commentsArr');
     let loggedUser = localStorage.getItem('usernameData');
     this.setState({
       username: loggedUser,
-      commentsArr: newCommentsArr
     })
-    // let newComment = localStorage.getItem(this.props.id);
-    // this.setState({
-    //   comments: newComment,
-    // })
   }
 
   inputChangeHandler = event => {   
@@ -85,17 +82,27 @@ class CommentSection extends Component{
     return newCommentObj
   }
 
-  addNewComment = event => {
+  addNewComment = (event, commentIdx) => {
     let newPostComment = this.newCommentObject();
     
     if(event.key === 'Enter' && this.state.newComment !== '') {
       let newCommentArr = [newPostComment].concat(this.state.comments)
+      const updatedCommentArr = this.state.allCommentsData.map((commentObj, idx) => {
+        if(idx === commentIdx) {
+          console.log(commentObj)
+          commentObj = newCommentArr
+          console.log(commentObj)
+        }
+        return commentObj
+      })
+
       this.setState({
         comments: newCommentArr,
         newComment: '',
         newTimestamp: moment().format('MMMM Do YYYY, h:mm:ss a'),
       })
-      localStorage.setItem('comments', JSON.stringify(newCommentArr));
+
+      localStorage.setItem('comments', JSON.stringify(updatedCommentArr));
     }     
   } 
 
@@ -167,7 +174,7 @@ class CommentSection extends Component{
             value={this.state.newComment}
             changed={this.inputChangeHandler}
             clicked={this.postCommentHandler}  
-            keyPress={this.addNewComment}
+            keyPress={(event) => this.addNewComment(event, this.state.postIdx)}
             />
         </div>  
       </StylesCommentSection>

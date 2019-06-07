@@ -16,7 +16,7 @@ class App extends Component {
       inputSearch: '', 
       postIds: dummyData.map(dataObj => dataObj.id = `${uuid()}`),
       postLikes: dummyData.map(dataObj => dataObj.likes),
-      newUser: '',
+      newUser: ''
     }
   }
 
@@ -34,7 +34,12 @@ class App extends Component {
           });
       };
 
-      localStorage.setItem('commentsArr', JSON.stringify(commentsArr));
+      let newCommentsArr = JSON.parse(localStorage.getItem('comments'));
+      if(newCommentsArr > this.state.commentsData) {
+        this.setState({
+          commentsData: newCommentsArr,
+        })
+      } 
   }
 
   searchBarHandler = event => {
@@ -69,7 +74,8 @@ class App extends Component {
         postLikes={this.state.postLikes}
         likePostHandler={this.likePostHandler}
         searchBarHandler={this.searchBarHandler}
-        searchNowHandler={this.searchNowHandler}/>
+        searchNowHandler={this.searchNowHandler}
+        allCommentsData={this.state.commentsData}/>
     );
   } 
 }

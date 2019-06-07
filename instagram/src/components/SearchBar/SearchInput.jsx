@@ -11,6 +11,7 @@ const StylesSearchInput = styled.div`
         border-radius: 5px;
         text-align: center;
         font-size: 1.5rem;
+        outline: 0;
     }
 `;
 

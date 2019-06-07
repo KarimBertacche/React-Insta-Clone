@@ -7,21 +7,29 @@ const withAuthenticate = (Component) => (ComponentTwo) => {
             this.state = {
                 newLogin: '',
                 userInput: '',
-                passwordInput: '',
-                
+                passwordInput: '',  
+                logged: false       
             }
         } 
 
         addNewUser = () => {
-            if(this.state.passwordInput.length >= 8) {
+            if(this.state.passwordInput.length >= 8 && this.state.passwordInput !== '') {
                 localStorage.setItem('usernameData', this.state.userInput);
-                localStorage.setItem('passwordData', this.state.passwordInput);
+                localStorage.setItem('passwordData', this.state.passwordInput);      
                 const getUser = localStorage.getItem('usernameData');
                 const getPassword = localStorage.getItem('passwordData');
+                const loggedUser = true;
                 this.setState({
                     newLogin: getUser,
-                    passwordInput: getPassword
+                    passwordInput: getPassword,
+                    logged: loggedUser
                 });
+
+                localStorage.setItem('userLogged', JSON.stringify(loggedUser));   
+                let userLoggedIn = JSON.parse(localStorage.getItem('userLogged'));
+                this.setState({
+                    logged: userLoggedIn,  
+                })
             }      
         }
 
@@ -37,20 +45,24 @@ const withAuthenticate = (Component) => (ComponentTwo) => {
             })
         }
 
+        componentDidUpdate(prevProps, prevState) {
+            localStorage.setItem('userLogged', JSON.stringify(prevState.logged));
+        }
+
         render() {
             return (
                 <div>
                     {
-                        this.state.newLogin !== '' && this.state.passwordInput !== '' ?
-                        <Component 
-                            username={this.state.newLogin}
-                            {...this.props}/>
-                        : <ComponentTwo 
-                            userInputHandler={this.userInputHandler} 
-                            passwordInputHandler={this.passwordInputHandler}
-                            onClick={this.addNewUser} 
-                            {...this.props}/>
-                            
+                        !!this.state.logged && this.state.newLogin !== '' ?
+                            <Component 
+                                username={this.state.newLogin}
+                                {...this.props}/>
+                            : <ComponentTwo 
+                                userInputHandler={this.userInputHandler} 
+                                passwordInputHandler={this.passwordInputHandler}
+                                onClick={this.addNewUser} 
+                                {...this.props}/>
+                        }
                     }
                 </div>
             );

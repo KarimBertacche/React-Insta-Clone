@@ -43,13 +43,16 @@ function PostContainer(props) {
                         <img src={props.data.imageUrl} alt="post-img" />
                     </figure>
                     <main>
-                        <CommentSection 
-                            comments={props.data.comments}  
+                        <CommentSection
+                            comments={props.comment}  
                             data={props.data}
                             id={props.id}
                             postIds={props.postIds}
                             likes={props.postLikes}
-                            likePostHandler={props.likePostHandler}/>           
+                            likePostHandler={props.likePostHandler}
+                            postIdx={props.postIdx}
+                            allCommentsData={props.allCommentsData}
+                            />           
                     </main>
                 </div>
         </StyledPostWrapper>

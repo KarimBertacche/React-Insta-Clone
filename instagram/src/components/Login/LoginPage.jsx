@@ -1,4 +1,5 @@
 import React from 'react';
+import instaLogo from '../../insta-writing.png'; 
 import styled from 'styled-components';
 
 const Button = styled.button` 
@@ -27,10 +28,27 @@ const StylesLogin = styled.section`
     justify-content: center;
     align-items: center;
     width: 400px;
-    height: 300px;
+    height: 350px;
     border: 3px solid #dd2a7b;
     border-radius: 5px;
-    margin: 50px auto 0;
+    margin: 100px auto 0;
+    box-shadow: 1px 1px 10px #000;
+
+    figure {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+    margin-top: -15px;
+    margin-bottom: 5px;
+
+        & img {
+            display: flex;
+            justify-content: flex-start;
+            width: 75%;
+            margin-left: 0;
+        } 
+    }
 
     div {
         display: flex;
@@ -68,6 +86,9 @@ const StylesLogin = styled.section`
 function LoginPage(props) {
     return (
         <StylesLogin>
+            <figure>
+                <img src={instaLogo} alt="insta writing"/>
+            </figure>
             <div>
                 <label>Username</label>
                 <input 

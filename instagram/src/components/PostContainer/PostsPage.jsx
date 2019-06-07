@@ -23,8 +23,12 @@ const PostsPage = props => {
                             id={props.postIds[idx]}
                             data={dataObj}
                             postIds={props.postIds}
+                            postIdx={idx}
                             postLikes={props.postLikes[idx]}
-                            likePostHandler={props.likePostHandler}/>
+                            likePostHandler={props.likePostHandler}
+                            comment={props.allCommentsData[idx]}
+                            allCommentsData={props.allCommentsData}
+                        />
                 })        
             }
         </StyledApp>
